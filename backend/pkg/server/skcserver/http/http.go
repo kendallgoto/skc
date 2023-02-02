@@ -20,6 +20,7 @@ import (
 
 const (
 	routeNewCodePost = "/"
+	routeHomeGet     = "/"
 	routeTourHomeGet = "/tour"
 	routeTourPageGet = "/tour/:page"
 	routeTourGet     = "/tour/:page/:short"
@@ -100,6 +101,10 @@ func addRoutes(e *echo.Echo, logger *zap.SugaredLogger) {
 			Errors:    parseErrors,
 		}
 		c.JSON(http.StatusOK, responseObj)
+		return nil
+	})
+	e.GET(routeHomeGet, func(c echo.Context) error {
+		c.Redirect(301, "/tour")
 		return nil
 	})
 	e.GET(routeTourHomeGet, func(c echo.Context) error {
