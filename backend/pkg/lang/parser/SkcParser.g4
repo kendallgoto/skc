@@ -10,9 +10,21 @@ line
     ;
 statement
     :   sayStatement
+    |   conditionalStatement
+    ;
+conditionalStatement
+    :   If WS condition COMMA WS Then WS statement
+    ;
+condition
+    :   literal WS Is (WS equality)? WS literal
+    ;
+equality
+    :   Equal
+    |   GreaterThan
+    |   LessThan
     ;
 sayStatement
-    :   SayCommand WS literal (WS outputTo)?
+    :   Say WS literal (WS outputTo)?
     ;
 outputTo
     :   OutputDestination WS outputType

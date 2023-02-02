@@ -35,3 +35,7 @@ func (v *skcVisitor) VisitChildren(node antlr.RuleNode) interface{} {
 	}
 	return nil
 }
+
+func (v *skcVisitor) VisitLiteral(ctx *parser.LiteralContext) interface{} {
+	return v.VisitChildren(ctx)
+}

@@ -9,10 +9,10 @@ func buildBasics() []TourItem {
 			Code:      `Say "Hello" to me.`,
 		},
 		{
-			Title:     "Another Page",
-			ShortName: "second",
-			Body:      "This is just a second page.",
-			Code:      `Say "Goodbye" to me.`,
+			Title:     "Conditionals",
+			ShortName: "conditionals",
+			Body:      "If you want to have varying logic in your code, an if statement is a must-have!",
+			Code:      `If "hello" is "hello", then say "Hi there!"`,
 		},
 	}
 }

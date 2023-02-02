@@ -1,6 +1,6 @@
 lexer grammar SkcLexer;
 
-SayCommand : S A Y;
+Say : S A Y;
 
 LineTerminal : '.';
 WS : [ \t\n\r\f]+;
@@ -8,7 +8,13 @@ StringSeperator : '"';
 OutputDestination: T O;
 OutputStdout: M E;
 OutputFile: F I L E;
-
+If: I F;
+COMMA : ',';
+Then : T H E N;
+Is : I S;
+Equal : E Q U A L WS T O;
+GreaterThan : G R E A T E R WS T H A N;
+LessThan : L E S S WS T H A N;
 StringLiteral
     :   StringSeperator CharSequence? StringSeperator
     ;
