@@ -13,8 +13,11 @@ COMMA : ',';
 Then : T H E N;
 Is : I S;
 Equal : E Q U A L WS T O;
+Not : N O T;
 GreaterThan : G R E A T E R WS T H A N;
 LessThan : L E S S WS T H A N;
+GreaterThanOrEqual : G R E A T E R WS T H A N WS O R WS E Q U A L WS T O;
+LessThanOrEqual : L E S S WS T H A N WS O R WS E Q U A L WS T O;
 StringLiteral
     :   StringSeperator CharSequence? StringSeperator
     ;

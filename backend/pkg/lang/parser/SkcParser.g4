@@ -16,12 +16,15 @@ conditionalStatement
     :   If WS condition COMMA WS Then WS statement
     ;
 condition
-    :   literal WS Is (WS equality)? WS literal
+    :   literal WS Is (WS (Not WS)? equality)? WS literal
     ;
 equality
     :   Equal
     |   GreaterThan
     |   LessThan
+    |   GreaterThan
+    |   GreaterThanOrEqual
+    |   LessThanOrEqual
     ;
 sayStatement
     :   Say WS literal (WS outputTo)?

@@ -23,12 +23,37 @@ func (v *skcVisitor) VisitLine(ctx *parser.LineContext) interface{} {
 	return nil
 }
 func (v *skcVisitor) VisitEquality(ctx *parser.EqualityContext) interface{} {
+	hasNot := (ctx.GetParent().(*parser.ConditionContext).Not() != nil)
 	if ctx.Equal() != nil {
-		v.result += " == "
+		if hasNot {
+			v.result += " != "
+		} else {
+			v.result += " == "
+		}
 	} else if ctx.GreaterThan() != nil {
-		v.result += " > "
+		if hasNot {
+			v.result += " <= "
+		} else {
+			v.result += " > "
+		}
 	} else if ctx.LessThan() != nil {
-		v.result += " < "
+		if hasNot {
+			v.result += " >= "
+		} else {
+			v.result += " < "
+		}
+	} else if ctx.LessThanOrEqual() != nil {
+		if hasNot {
+			v.result += " > "
+		} else {
+			v.result += " <= "
+		}
+	} else if ctx.GreaterThanOrEqual() != nil {
+		if hasNot {
+			v.result += " < "
+		} else {
+			v.result += " >= "
+		}
 	}
 	return nil
 }
