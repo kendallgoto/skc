@@ -4,14 +4,12 @@ import (
 	"fmt"
 
 	"github.com/antlr/antlr4/runtime/Go/antlr/v4"
-	"github.com/davecgh/go-spew/spew"
 	"github.com/kendallgoto/skc/pkg/lang/parser"
 )
 
 func (v *skcVisitor) VisitSayStatement(ctx *parser.SayStatementContext) interface{} {
 	v.result += "print("
 	if ctx.Literal() != nil {
-		spew.Dump(ctx.Literal())
 		v.result += ctx.Literal().GetText()
 	}
 	v.result += ")"
