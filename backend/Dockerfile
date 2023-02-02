@@ -1,6 +1,6 @@
 FROM golang:1.18-alpine as builder
 
-RUN apk add --no-cache make git gcc g++ pkgconfig
+RUN apk add --no-cache make git gcc g++ pkgconfig openjdk11
 
 # download correct python version
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/v3.10/main' >> /etc/apk/repositories

@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Tour Of SKC - {{ index . "title" }}</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/lint/lint.min.css" integrity="sha512-jP1+o6s94WQS9boYeDP3Azh8ihI5BxGgBZNjkABhx05MqH5WuDzfzSnoPxGxVzWi/gxxVHZHvWkdRM6SMy5B0Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link href="/static/style.css" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Roboto+Mono:wght@300&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="navbar">
+			<div class="nav-image">
+				<a href="/tour">
+					<img src="/static/skc.png" />
+				</a>
+			</div>
+		</div>
+		<div class="interactive-body">
+			<div class="section" id="info-section">
+				<div class="info">
+					<h1>{{ index . "title" }}</h1>
+					<p>{{ index . "body" }}</p>
+				</div>
+				<div class="nav">
+					<a class="button" href="{{ index . "prev" }}">&laquo; Back</a>
+					<span>{{ index . "num" }}</span>
+					<a class="button" href="{{ index . "next" }}">Next &raquo;</a>
+				</div>
+			</div>
+			<div class="section" id="code-section">
+				<span class="section-label">SKC Code</span>
+				<div id="codemirror-code"></div>
+			</div>
+			<div class="section" id="transform-section">
+				<div class="transform-split">
+					<div class="transform-result">
+						<span class="section-label">Python Transformation</span>
+						<div class="transform-code" id="codemirror-transform"></div>
+					</div>
+					<div class="transform-execute">
+						<span class="section-label">Execution Result</span>
+						<pre class="readonly" id="execute-result"></pre>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script type="text/javascript" src="/static/main.js"></script>
+		<script>
+			code = {{ index . "code" }}
+			initWithCode(code)
+		</script>
+	</body>
+</html>

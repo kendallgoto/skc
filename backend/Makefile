@@ -24,6 +24,7 @@ build: $(targets)
 
 .PHONY: test
 test:
+	go generate ./...
 	mkdir -p $(TEST_DIR)
 	go test $(go_test_flags) ./... -json | tee $(TEST_DIR)/$@.json | jq '. | select(.Action!="output") | select(.Action!="skip") | select(.Action!="run") | .Action + "\t" + .Package + "\t" + .Test' --raw-output
 
@@ -34,7 +35,10 @@ test-coverage:
 
 .PHONY: clean
 clean:
-	rm pkg/lang/yacc/y.*
+	rm -f pkg/lang/parser/skc_*
+	rm -f pkg/lang/parser/skcparser_*
+	rm -f pkg/lang/parser/SkcParser.interp pkg/lang/parser/SkcParser.tokens
+	rm -f pkg/lang/parser/SkcLexer.interp pkg/lang/parser/SkcLexer.tokens
 	rm -rf bin/ test-results/
 
 .PHONY: $(targets)
