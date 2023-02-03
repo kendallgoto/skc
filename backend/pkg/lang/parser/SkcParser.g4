@@ -27,10 +27,7 @@ equality
     |   LessThanOrEqual
     ;
 sayStatement
-    :   Say WS literal (WS outputTo)?
-    ;
-outputTo
-    :   OutputDestination WS outputType
+    :   Say WS literal (WS OutputDestination WS (OutputStdout | (OutputFile WS StringLiteral)))?
     ;
 literal
     :   StringLiteral

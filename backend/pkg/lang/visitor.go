@@ -21,10 +21,6 @@ func (v *skcVisitor) VisitStatement(ctx *parser.StatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *skcVisitor) VisitOutputTo(ctx *parser.OutputToContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
 func (v *skcVisitor) VisitOutputType(ctx *parser.OutputTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }

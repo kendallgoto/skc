@@ -12,7 +12,13 @@ func buildBasics() []TourItem {
 			Title:     "Conditionals",
 			ShortName: "conditionals",
 			Body:      "If you want to have varying logic in your code, an if statement is a must-have!",
-			Code:      `If "hello" is "hello", then say "Hi there!"`,
+			Code:      `If "hello" is "hello", then say "Hi there!". If "you" is not equal to "cool", then say "Sucker!".`,
+		},
+		{
+			Title:     "File I/O",
+			ShortName: "fileio",
+			Body:      "If you want to corrupt an OS, you'll need to be able to write to the disk!",
+			Code:      `Say "hello" to file "temp.txt".`,
 		},
 	}
 }

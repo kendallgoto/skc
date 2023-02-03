@@ -10,11 +10,23 @@ import (
 )
 
 func (v *skcVisitor) VisitSayStatement(ctx *parser.SayStatementContext) interface{} {
-	v.result += "print("
+	endTack := ""
+	if ctx.OutputFile() != nil {
+		targetFile := ctx.StringLiteral()
+		v.result += "f = open("
+		if targetFile != nil {
+			v.result += targetFile.GetText()
+		}
+		v.result += `, "w")` + "\n" + `f.write(`
+		endTack = ")\nf.close()"
+	} else {
+		v.result += "print("
+		endTack = ")"
+	}
 	if ctx.Literal() != nil {
 		v.result += ctx.Literal().GetText()
 	}
-	v.result += ")"
+	v.result += endTack
 	return nil
 }
 func (v *skcVisitor) VisitLine(ctx *parser.LineContext) interface{} {
@@ -79,7 +91,6 @@ func (v *skcVisitor) VisitConditionalStatement(ctx *parser.ConditionalStatementC
 	ctx.Condition().Accept(v)
 	v.result += "):\n"
 	// handle block indent:
-
 	// cache the result and clear it
 	currentResult := strings.Clone(v.result)
 	v.result = ""
