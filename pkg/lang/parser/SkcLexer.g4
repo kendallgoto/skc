@@ -10,6 +10,7 @@ OutputDestination: 'to';
 OutputStdout: 'me';
 OutputFile: 'file';
 If: 'if';
+While: 'while';
 COMMA : ',';
 Then :'then';
 Is : 'is';
