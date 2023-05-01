@@ -11,10 +11,16 @@ line
 statement
     :   sayStatement
     |   conditionalStatement
+    |   whileStatement
     ;
 conditionalStatement
     :   If WS condition COMMA WS Then WS statement
     ;
+
+whileStatement
+    :   While WS condition COMMA WS statement
+    ;
+
 condition
     :   literal WS Is (WS (Not WS)? equality)? WS literal
     ;

@@ -111,6 +111,26 @@ func (v *skcVisitor) VisitConditionalStatement(ctx *parser.ConditionalStatementC
 	return nil
 }
 
+func (v *skcVisitor) VisitWhileStatement(ctx *parser.WhileStatementContext) interface{} {
+	v.result += "while("
+	ctx.Condition().Accept(v)
+	v.result += "):\n"
+
+	currentResult := strings.Clone(v.result)
+	v.result = ""
+	ctx.Statement().Accept(v)
+
+	scanner := bufio.NewScanner(strings.NewReader(v.result))
+	v.result = ""
+	for scanner.Scan() {
+		v.result += "\t" + scanner.Text() + "\n"
+	}
+
+	v.result = currentResult + v.result
+
+	return nil
+}
+
 func Parse(input string) (string, []ParseError, error) {
 	fmt.Println(input)
 	visitor := &skcVisitor{}

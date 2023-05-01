@@ -12,6 +12,8 @@ COPY go.mod go.sum ./
 
 RUN go mod download
 
+ADD https://www.antlr.org/download/antlr-4.12.0-complete.jar ./antlr.jar
+
 COPY . ./
 
 RUN make
