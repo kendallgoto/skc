@@ -3,6 +3,7 @@ package execute
 import (
 	"bytes"
 	"context"
+	"fmt"
 	"os"
 	"path"
 
@@ -14,6 +15,7 @@ import (
 )
 
 func Run(code string) (string, error) {
+	//return "Execution is not supported on this machine", nil
 	executionId := uuid.New().String()
 	cwd, err := os.Getwd()
 	if err != nil {
@@ -26,7 +28,7 @@ func Run(code string) (string, error) {
 	}
 	containerConfig := &container.Config{
 		Image: "skc-sandbox",
-		Cmd:   []string{"/app/sandbox/" + executionId},
+		Cmd:   []string{"/app/sandbox/" + executionId + ".py"},
 	}
 	hostConfig := &container.HostConfig{
 		Runtime:    "runsc",
@@ -63,7 +65,7 @@ func Run(code string) (string, error) {
 		}
 	case <-statusCh:
 	}
-	// fmt.Printf("finished %s\n", resp.ID)
+	fmt.Printf("finished %s\n", resp.ID)
 	containerLogs, err := cli.ContainerLogs(context.Background(), resp.ID, types.ContainerLogsOptions{ShowStdout: true, ShowStderr: true})
 	if err != nil {
 		return "", err

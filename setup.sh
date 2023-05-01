@@ -7,3 +7,4 @@ then
 fi
 
 docker build -t skc-sandbox ./execution
+wget https://www.antlr.org/download/antlr-4.12.0-complete.jar -O antlr.jar
